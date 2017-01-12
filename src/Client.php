@@ -1,54 +1,55 @@
-<?php namespace Shopify;
+<?php
 
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
+namespace Shopify;
 
 use GuzzleHttp\Client as BaseClient;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 
+/**
+ * Class Client
+ * @package Shopify
+ */
 class Client
 {
-	
 	/**
      * Guzzle service description
      *
      * @var \Shopify\Description
      */
     private $description;
-    
-	
+
 	/**
      * Guzzle base client
      *
      * @var \GuzzleHttp\Client
      */
     private $baseClient;
-    
-    
+
     /**
      * Adapter for Guzzle base client
      *
-     * @var \GuzzleHttp\Adapter\AdapterInterface
+     * Changing type to be a callable as Guzzle as of version 5.0 uses GuzzleHttp\Ring\Client callables.
+     *
+     * @see https://github.com/guzzle/guzzle/blob/master/CHANGELOG.md#breaking-changes
+     *
+     * @var callable
      */
     private $baseClientAdapter;
-    
-    
+
     /**
      * Api client services
      *
      * @var \GuzzleHttp\Command\Guzzle\GuzzleClient
      */
     private $serviceClient;
-    
-    
+
     /**
      * Shopify client config settings
      *
      * @var array
      */
     private $settings = [];
-    
-    
+
     /**
      * Request header items
      *
@@ -83,14 +84,13 @@ class Client
      * Create a new GuzzleClient Service, ability to use the client
      * without setting properties on instantiation.
      *
-     * @param  array  $attributes
-     * @return void
-    */
+     * Client constructor.
+     * @param array $settings
+     */
     public function __construct(array $settings = array())
     {
         $this->settings = $settings;
     }
-
 
 	/**
      * Merge additional settings with existing and save. Overrides
@@ -105,7 +105,20 @@ class Client
         if ($this->serviceClient) $this->buildClient();
         return $this;
     }
-    
+
+    /**
+     * @param $method
+     * @param $parameters
+     * @return mixed
+     */
+    public function __call($method, $parameters)
+    {
+        if (!$this->serviceClient) {
+            $this->buildClient();
+        }
+
+        return call_user_func_array([$this->serviceClient, $method], $parameters);
+    }
 
 	/**
      * Load resource configuration file and return array.
@@ -118,7 +131,6 @@ class Client
         return require __DIR__.'/resources/'.$name.'.php';
     }
     
-
     /**
      * Build new service client from descriptions.
      *
@@ -133,13 +145,13 @@ class Client
         }
 
         $this->serviceClient = new GuzzleClient(
-                $client,
-                $this->description,
-                array(
-                    'emitter'  => $this->baseClient->getEmitter(),
-                    'defaults' => $this->settings,
-                )
-            );
+            $client,
+            $this->description,
+            [
+                'emitter'  => $this->baseClient->getEmitter(),
+                'defaults' => $this->settings,
+            ]
+        );
     }
     
     /**
@@ -152,21 +164,21 @@ class Client
         return $this->baseClient ?: $this->baseClient = $this->loadBaseClient();
     }
     
-
     /**
      * Set adapter and create Guzzle base client.
      *
-     * @return \GuzzleHttp\Client
+     * @param array $settings
+     * @return BaseClient
      */
     private function loadBaseClient(array $settings = [])
     {
-        if ($this->baseClientAdapter)
+        if ($this->baseClientAdapter) {
             $settings['adapter'] = $this->baseClientAdapter;
+        }
 
         return $this->baseClient = new BaseClient($settings);
     }
     
-
     /**
      * Description works tricky as a 
      * property, reload as a needed.
@@ -177,8 +189,7 @@ class Client
     {
         $this->description = new Description($this->loadConfig());
     }
-    
-    
+
     /**
      * Load configuration file and parse resources.
      *
@@ -197,7 +208,6 @@ class Client
                         
         // process each of the service description resources defined
         foreach ($description['services'] as $serviceName) {
-	        
             $service = $this->loadResource($serviceName);
             $description = $this->loadServiceDescription($service, $description);
         
@@ -207,8 +217,7 @@ class Client
         unset($description['services']);
         return $description;
     }
-    
-    
+
     /**
      * Load service description from resource, add global
      * parameters to operations. Operations and models
@@ -232,13 +241,4 @@ class Client
         }
         return $description;
     }
-    
-    
-    public function __call($method, $parameters)
-    {
-		if (!$this->serviceClient) $this->buildClient();
-
-        return call_user_func_array([$this->serviceClient, $method], $parameters);
-    }
-    
 }

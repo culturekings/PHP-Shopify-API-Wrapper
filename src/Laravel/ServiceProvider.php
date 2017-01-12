@@ -1,10 +1,16 @@
-<?php namespace Shopify\Laravel;
+<?php
 
-use Shopify\Exception\UnauthorizedException;
+namespace Shopify\Laravel;
+
+use Shopify;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
-class ServiceProvider extends LaravelServiceProvider {
-
+/**
+ * Class ServiceProvider
+ * @package Shopify\Laravel
+ */
+class ServiceProvider extends LaravelServiceProvider
+{
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -12,15 +18,29 @@ class ServiceProvider extends LaravelServiceProvider {
      */
     protected $defer = true;
 
+    /**
+     * @throws Shopify\Exception\FunctionNotFoundException
+     */
     public function boot()
     {
         $configPath = __DIR__ . '/../config/config.php';
-        if(function_exists('config_path')){
+
+        // Attempt to work out the configuration path to publish
+        if (function_exists('config_path')) {
             $publishPath = config_path('shopify.php');
-        } else {
+        } elseif (function_exists('base_path')) {
             $publishPath = base_path('config/shopify.php');
+        } else {
+            throw new Shopify\Exception\FunctionNotFoundException('config_path and/or base_path');
         }
-        $this->publishes([$configPath => $publishPath],'config');
+
+        // Publish our configuration
+        $this->publishes(
+            [
+                $configPath => $publishPath,
+            ],
+            'config'
+        );
     }
 
     /**
@@ -31,20 +51,20 @@ class ServiceProvider extends LaravelServiceProvider {
     public function register()
     {
         $configPath = __DIR__ . '/../config/config.php';
+
         $this->mergeConfigFrom($configPath, 'shopify');
+
         $this->app->singleton('shopify', function($app) {
+            // If no configuration available, return empty client
+            if (!isset($app['config']['services']['shopify'])) {
+                return new Shopify\Client();
+            }
 
-            if (isset($app['config']['services']['shopify'])) {
+            // Otherwise, return a configured Shopify client
+            $config = array_filter($app['config']['services']['shopify']);
 
-                $config = array_filter($app['config']['services']['shopify']);
-
-                return new \Shopify\Client($config);
-
-            } else return new \Shopify\Client();
-
+            return new Shopify\Client($config);
         });
-
-        $app = $this->app;
     }
 
     /**
@@ -54,7 +74,8 @@ class ServiceProvider extends LaravelServiceProvider {
      */
     public function provides()
     {
-        return array('shopify');
+        return [
+            'shopify',
+        ];
     }
-
 }
