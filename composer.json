@@ -3,7 +3,6 @@
     "description": "Shopify PHP (Guzzle) API Wrapper",
     "type": "library",
     "license": "MIT",
-    "version": "2.0.0",
     "homepage": "http://www.shopifyextras.com",
     "authors": [
         {
