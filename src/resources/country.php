@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getCountries" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/countries.json",
+            "uri" => "/admin/api/{$api_version}/countries.json",
             "summary" => "Get a list of all countries.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -46,7 +50,7 @@ return array(
          */
         "getCountryCount" => array(
 	      	"httpMethod" => "GET",
-            "uri" => "/admin/countries/count.json",
+            "uri" => "/admin/api/{$api_version}/countries/count.json",
             "summary" => "Get a count of all countries.",
             "responseModel" => "defaultJsonResponse" 
         ),
@@ -59,7 +63,7 @@ return array(
          */
         "getCountry" => array(
 	      	"httpMethod" => "GET",
-            "uri" => "/admin/countries/{id}.json",
+            "uri" => "/admin/api/{$api_version}/countries/{id}.json",
             "summary" => "Show country.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -85,7 +89,7 @@ return array(
          */
         "createCountry" => array(
 	      	"httpMethod" => "POST",
-            "uri" => "/admin/countries.json",
+            "uri" => "/admin/api/{$api_version}/countries.json",
             "summary" => "Create a country.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -120,7 +124,7 @@ return array(
          */
         "updateCountry" => array(
 	      	"httpMethod" => "PUT",
-            "uri" => "/admin/countries/{id}.json",
+            "uri" => "/admin/api/{$api_version}/countries/{id}.json",
             "summary" => "Create a country.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -166,7 +170,7 @@ return array(
          */
         "deleteCountry" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/countries/{id}.json",
+            "uri" => "/admin/api/{$api_version}/countries/{id}.json",
             "summary" => "Delete a country.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

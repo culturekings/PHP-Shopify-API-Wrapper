@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getProducts" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/products.json",
+            "uri" => "/admin/api/{$api_version}/products.json",
             "summary" => "Retrieve a list of all Products",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -111,7 +115,7 @@ return array(
          */
         "getProductCount" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/products/count.json",
+            "uri" => "/admin/api/{$api_version}/products/count.json",
             "summary" => "Retrieve a count of all Products",
             "responseModel" => "defaultJsonResponse"
         ),
@@ -124,7 +128,7 @@ return array(
          */
         "getProduct" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/products/{id}.json",
+            "uri" => "/admin/api/{$api_version}/products/{id}.json",
             "summary" => "Retrieve a single Product",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -145,7 +149,7 @@ return array(
          */
         "createProduct" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/products.json",
+            "uri" => "/admin/api/{$api_version}/products.json",
             "summary" => "Create a new product.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -235,7 +239,7 @@ return array(
          */
         "updateProduct" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/products/{id}.json",
+            "uri" => "/admin/api/{$api_version}/products/{id}.json",
             "summary" => "Update an existing product.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -336,7 +340,7 @@ return array(
          */
         "deleteProduct" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/products/{id}.json",
+            "uri" => "/admin/api/{$api_version}/products/{id}.json",
             "summary" => "Delete a product from the shop.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getFulfillmentServices" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/fulfillment_services.json",
+            "uri" => "/admin/api/{$api_version}/fulfillment_services.json",
             "summary" => "Retrieve all fulfilment services.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -40,7 +44,7 @@ return array(
          */
         "getFulfillmentService" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/fulfillment_services/{id}.json",
+            "uri" => "/admin/api/{$api_version}/fulfillment_services/{id}.json",
             "summary" => "Get a single fulfillment service.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -61,7 +65,7 @@ return array(
          */
         "createFulfillmentService" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/fulfillment_services.json",
+            "uri" => "/admin/api/{$api_version}/fulfillment_services.json",
             "summary" => "Create a fulfilment for a specific order.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -121,7 +125,7 @@ return array(
          */
         "updateFulfillmentService" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/fulfillment_services/{id}.json",
+            "uri" => "/admin/api/{$api_version}/fulfillment_services/{id}.json",
             "summary" => "Update a fulfillment service.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -192,7 +196,7 @@ return array(
          */
         "deleteFulfillmentService" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/fulfillment_services/{id}.json",
+            "uri" => "/admin/api/{$api_version}/fulfillment_services/{id}.json",
             "summary" => "Delete a fulfillment service.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

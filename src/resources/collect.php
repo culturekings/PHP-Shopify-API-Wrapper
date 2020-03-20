@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getCollects" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/collects.json",
+            "uri" => "/admin/api/{$api_version}/collects.json",
             "summary" => "Retrieve a list of all Collects",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -61,7 +65,7 @@ return array(
          */
         "getCollectCount" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/collects/count.json",
+            "uri" => "/admin/api/{$api_version}/collects/count.json",
             "summary" => "Retrieve a count of all Collects",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -86,7 +90,7 @@ return array(
          */
         "getCollect" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/collects/{id}.json",
+            "uri" => "/admin/api/{$api_version}/collects/{id}.json",
             "summary" => "Retrieve a single Collect",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -111,7 +115,7 @@ return array(
          */
         "createCollect" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/collects.json",
+            "uri" => "/admin/api/{$api_version}/collects.json",
             "summary" => "Create a new Collect",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -156,7 +160,7 @@ return array(
          */
         "deleteCollect" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/collects/{id}.json",
+            "uri" => "/admin/api/{$api_version}/collects/{id}.json",
             "summary" => "Delete a Collect.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

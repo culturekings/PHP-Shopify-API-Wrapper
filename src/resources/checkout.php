@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getCheckouts" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/checkouts.json",
+            "uri" => "/admin/api/{$api_version}/checkouts.json",
             "summary" => "Retrieve a list of all Checkouts",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -76,7 +80,7 @@ return array(
          */
         "getCheckoutCount" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/checkouts/count.json",
+            "uri" => "/admin/api/{$api_version}/checkouts/count.json",
             "summary" => "Retrieve a count of all Checkouts",
             "responseModel" => "defaultJsonResponse",
 			"properties" => array(

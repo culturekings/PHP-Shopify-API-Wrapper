@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getShop" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/shop.json",
+            "uri" => "/admin/api/{$api_version}/shop.json",
             "summary" => "Retrieve Shop",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

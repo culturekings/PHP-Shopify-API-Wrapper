@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getUsers" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/users.json",
+            "uri" => "/admin/api/{$api_version}/users.json",
             "summary" => "Get a list of all users.",
             "responseModel" => "defaultJsonResponse",
         ),
@@ -34,7 +38,7 @@ return array(
          */
         "getUser" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/users/{id}.json",
+            "uri" => "/admin/api/{$api_version}/users/{id}.json",
             "summary" => "Get a user.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

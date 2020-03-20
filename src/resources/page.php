@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getPages" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/pages.json",
+            "uri" => "/admin/api/{$api_version}/pages.json",
             "summary" => "Get a list of all pages.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -101,7 +105,7 @@ return array(
          */
         "getPageCount" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/pages/count.json",
+            "uri" => "/admin/api/{$api_version}/pages/count.json",
             "summary" => "Get a count of all pages.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -156,7 +160,7 @@ return array(
          */
         "getPage" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/pages/{id}.json",
+            "uri" => "/admin/api/{$api_version}/pages/{id}.json",
             "summary" => "Retrieve a single page.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -182,7 +186,7 @@ return array(
          */
         "createPage" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/pages.json",
+            "uri" => "/admin/api/{$api_version}/pages.json",
             "summary" => "Create a new page.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -237,7 +241,7 @@ return array(
          */
         "updatePage" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/pages/{id}.json",
+            "uri" => "/admin/api/{$api_version}/pages/{id}.json",
             "summary" => "Update a page.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -298,7 +302,7 @@ return array(
          */
         "deletePage" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/pages/{id}.json",
+            "uri" => "/admin/api/{$api_version}/pages/{id}.json",
             "summary" => "Delete a page.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

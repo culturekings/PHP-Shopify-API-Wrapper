@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getGiftCards" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/gift_cards.json",
+            "uri" => "/admin/api/{$api_version}/gift_cards.json",
             "summary" => "Retrieve a list of all Gift Cards",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -56,7 +60,7 @@ return array(
          */
         "getGiftCardCount" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/gift_cards/count.json",
+            "uri" => "/admin/api/{$api_version}/gift_cards/count.json",
             "summary" => "Retrieve a count of all Gift Cards",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -76,7 +80,7 @@ return array(
          */
         "getGiftCard" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/gift_Cards/{id}.json",
+            "uri" => "/admin/api/{$api_version}/gift_Cards/{id}.json",
             "summary" => "Retrieve a single Gift Card",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -97,7 +101,7 @@ return array(
          */
         "createGiftCard" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/gift_cards.json",
+            "uri" => "/admin/api/{$api_version}/gift_cards.json",
             "summary" => "Create a new Gift Card.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -147,7 +151,7 @@ return array(
          */
         "updateGiftCard" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/gift_cards/{id}.json",
+            "uri" => "/admin/api/{$api_version}/gift_cards/{id}.json",
             "summary" => "Update an existing gift card.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -193,7 +197,7 @@ return array(
          */
         "disableGiftCard" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/gift_cards/{id}/disable.json",
+            "uri" => "/admin/api/{$api_version}/gift_cards/{id}/disable.json",
             "summary" => "Disable a gift card from the shop.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

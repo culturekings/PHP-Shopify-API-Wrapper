@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getCustomers" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/customers.json",
+            "uri" => "/admin/api/{$api_version}/customers.json",
             "summary" => "Retrieve all customers of a shop",
             "responseModel" => "defaultJsonResponse"
         ),
@@ -33,7 +37,7 @@ return array(
          */
         "getCustomerSearch" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/customers/search.json",
+            "uri" => "/admin/api/{$api_version}/customers/search.json",
             "summary" => "Retrieve a count of all Blogs",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -73,7 +77,7 @@ return array(
          */
         "getCustomer" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/customers/{id}.json",
+            "uri" => "/admin/api/{$api_version}/customers/{id}.json",
             "summary" => "Retrieve a single Customer",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -93,7 +97,7 @@ return array(
          */
         "createCustomer" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/customers.json",
+            "uri" => "/admin/api/{$api_version}/customers.json",
             "summary" => "Create a new customer record.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -213,7 +217,7 @@ return array(
          */
         "updateCustomer" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/customers/{id}.json",
+            "uri" => "/admin/api/{$api_version}/customers/{id}.json",
             "summary" => "Update a customer record.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -346,7 +350,7 @@ return array(
          */
         "deleteCustomer" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/customers/{id}.json",
+            "uri" => "/admin/api/{$api_version}/customers/{id}.json",
             "summary" => "Delete a customer.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

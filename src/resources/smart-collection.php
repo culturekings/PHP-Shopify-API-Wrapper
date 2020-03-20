@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getSmartCollections" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/smart_collections.json",
+            "uri" => "/admin/api/{$api_version}/smart_collections.json",
             "summary" => "Receive a list of all SmartCollections.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -96,7 +100,7 @@ return array(
          */
         "getSmartCollectionsCount" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/smart_collections/count.json",
+            "uri" => "/admin/api/{$api_version}/smart_collections/count.json",
             "summary" => "Get a count of all smart collections that contain a given product.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -146,7 +150,7 @@ return array(
          */
         "getSmartCollection" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/smart_collections/{id}.json",
+            "uri" => "/admin/api/{$api_version}/smart_collections/{id}.json",
             "summary" => "Get a single smart collection.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -172,7 +176,7 @@ return array(
          */
         "createSmartCollection" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/smart_collections.json",
+            "uri" => "/admin/api/{$api_version}/smart_collections.json",
             "summary" => "Create a new smart collection.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -247,7 +251,7 @@ return array(
          */
         "updateSmartCollection" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/smart_collections/{id}.json",
+            "uri" => "/admin/api/{$api_version}/smart_collections/{id}.json",
             "summary" => "Update a smart collection.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -333,7 +337,7 @@ return array(
          */
         "updateSmartCollectionOrder" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/smart_collections/{id}/order.json",
+            "uri" => "/admin/api/{$api_version}/smart_collections/{id}/order.json",
             "summary" => "Update a smart collections sort order.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -374,7 +378,7 @@ return array(
          */
         "deleteSmartCollection" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/smart_collections/{id}.json",
+            "uri" => "/admin/api/{$api_version}/smart_collections/{id}.json",
             "summary" => "Remove a smart collection.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

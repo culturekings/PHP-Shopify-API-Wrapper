@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getWebhooks" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/webhooks.json",
+            "uri" => "/admin/api/{$api_version}/webhooks.json",
             "summary" => "Get a list of all webhooks",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -86,7 +90,7 @@ return array(
          */
         "getWebhookCount" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/webhooks/count.json",
+            "uri" => "/admin/api/{$api_version}/webhooks/count.json",
             "summary" => "Get a count of webhooks",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -111,7 +115,7 @@ return array(
          */
         "getWebhook" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/webhooks/{id}.json",
+            "uri" => "/admin/api/{$api_version}/webhooks/{id}.json",
             "summary" => "Get a single webhook by id",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -138,7 +142,7 @@ return array(
          */
         "createWebhook" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/webhooks.json",
+            "uri" => "/admin/api/{$api_version}/webhooks.json",
             "summary" => "Create a new webhook.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -178,7 +182,7 @@ return array(
          */
         "updateWebhook" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/webhooks/{id}.json",
+            "uri" => "/admin/api/{$api_version}/webhooks/{id}.json",
             "summary" => "Update a new webhook.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -229,7 +233,7 @@ return array(
          */
         "deleteWebhook" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/webhooks/{id}.json",
+            "uri" => "/admin/api/{$api_version}/webhooks/{id}.json",
             "summary" => "Delete a webhook.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

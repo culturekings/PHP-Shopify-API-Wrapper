@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getRedirects" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/redirects.json",
+            "uri" => "/admin/api/{$api_version}/redirects.json",
             "summary" => "Get a list of all URL redirects for your shop.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -66,7 +70,7 @@ return array(
          */
         "getRedirectsCount" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/redirects/count.json",
+            "uri" => "/admin/api/{$api_version}/redirects/count.json",
             "summary" => "Get a count of all URL redirects for your shop.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -91,7 +95,7 @@ return array(
          */
         "getRedirect" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/redirects/{id}.json",
+            "uri" => "/admin/api/{$api_version}/redirects/{id}.json",
             "summary" => "Get a single redirect.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -117,7 +121,7 @@ return array(
          */
         "createRedirect" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/redirects.json",
+            "uri" => "/admin/api/{$api_version}/redirects.json",
             "summary" => "Create a new redirect.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -147,7 +151,7 @@ return array(
          */
         "updateRedirect" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/redirects/{id}.json",
+            "uri" => "/admin/api/{$api_version}/redirects/{id}.json",
             "summary" => "Update a redirect's path and/or target URIs.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -185,7 +189,7 @@ return array(
          */
         "deleteRedirect" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/redirects/{id}.json",
+            "uri" => "/admin/api/{$api_version}/redirects/{id}.json",
             "summary" => "Delete a store redirect",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

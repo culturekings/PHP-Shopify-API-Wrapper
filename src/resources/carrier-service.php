@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getCarrierServices" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/carrier_services.json",
+            "uri" => "/admin/api/{$api_version}/carrier_services.json",
             "summary" => "Retrieve a list of all Carrier Services",
             "responseModel" => "defaultJsonResponse"
         ),
@@ -34,7 +38,7 @@ return array(
          */
         "getCarrierService" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/carrier_services/{id}.json",
+            "uri" => "/admin/api/{$api_version}/carrier_services/{id}.json",
             "summary" => "Retrieve a single Carrier Service",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -55,7 +59,7 @@ return array(
          */
         "createCarrierService" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/carrier_services.json",
+            "uri" => "/admin/api/{$api_version}/carrier_services.json",
             "summary" => "Create a Carrier Service.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -105,7 +109,7 @@ return array(
          */
         "updateCarrierService" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/carrier_services/{id}.json",
+            "uri" => "/admin/api/{$api_version}/carrier_services/{id}.json",
             "summary" => "Update a Carrier Service.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -166,7 +170,7 @@ return array(
          */
         "deleteCarrierService" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/carrier_services/{id}.json",
+            "uri" => "/admin/api/{$api_version}/carrier_services/{id}.json",
             "summary" => "Delete an carrier service.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

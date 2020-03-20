@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getProductVariants" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/products/{id}/variants.json",
+            "uri" => "/admin/api/{$api_version}/products/{id}/variants.json",
             "summary" => "Retrieve a list of all product variants.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -62,7 +66,7 @@ return array(
          */
         "getProductVariantCount" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/products/{id}/variants/count.json",
+            "uri" => "/admin/api/{$api_version}/products/{id}/variants/count.json",
             "summary" => "Get a count of product variants.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -83,7 +87,7 @@ return array(
          */
         "getProductVariant" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/variants/{id}.json",
+            "uri" => "/admin/api/{$api_version}/variants/{id}.json",
             "summary" => "Get a single product variant by id.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -108,7 +112,7 @@ return array(
          */
         "getProductVariantMetafields" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/variants/{id}/metafields.json",
+            "uri" => "/admin/api/{$api_version}/variants/{id}/metafields.json",
             "summary" => "Get a single product variants metafields by id.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -130,7 +134,7 @@ return array(
          */
         "createProductVariant" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/products/{id}/variants.json",
+            "uri" => "/admin/api/{$api_version}/products/{id}/variants.json",
             "summary" => "Create a new product variant.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -251,7 +255,7 @@ return array(
          */
         "updateProductVariant" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/variants/{id}.json",
+            "uri" => "/admin/api/{$api_version}/variants/{id}.json",
             "summary" => "Update a product variant.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -377,7 +381,7 @@ return array(
          */
         "deleteProductVariant" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/products/{product_id}/variants/{id}.json",
+            "uri" => "/admin/api/{$api_version}/products/{product_id}/variants/{id}.json",
             "summary" => "Delete a product variant.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

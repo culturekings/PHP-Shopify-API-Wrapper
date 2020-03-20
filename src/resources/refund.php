@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getRefund" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/orders/{order_id}/refunds/{id}.json",
+            "uri" => "/admin/api/{$api_version}/orders/{order_id}/refunds/{id}.json",
             "summary" => "Receive a singe refund.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

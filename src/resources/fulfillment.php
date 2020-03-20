@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getFulfillments" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/orders/{order_id}/fulfillments.json",
+            "uri" => "/admin/api/{$api_version}/orders/{order_id}/fulfillments.json",
             "summary" => "Retrieve all fulfilments for an order",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -82,7 +86,7 @@ return array(
          */
         "getFulfillmentCount" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/orders/{id}/fulfillments/count.json",
+            "uri" => "/admin/api/{$api_version}/orders/{id}/fulfillments/count.json",
             "summary" => "Get a count of all fulfillments for a given order.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -123,7 +127,7 @@ return array(
          */
         "getFulfillment" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/orders/{order_id}/fulfillments/{id}.json",
+            "uri" => "/admin/api/{$api_version}/orders/{order_id}/fulfillments/{id}.json",
             "summary" => "Get a single fulfillment for a given order.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -155,7 +159,7 @@ return array(
          */
         "createFulfillment" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/orders/{order_id}/fulfillments.json",
+            "uri" => "/admin/api/{$api_version}/orders/{order_id}/fulfillments.json",
             "summary" => "Create a fulfilment for a specific order.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -226,7 +230,7 @@ return array(
          */
         "updateFulfillment" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/orders/{order_id}/fulfillments/{id}.json",
+            "uri" => "/admin/api/{$api_version}/orders/{order_id}/fulfillments/{id}.json",
             "summary" => "Update a fulfilment.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -313,7 +317,7 @@ return array(
          */
         "completeFulfillment" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/orders/{order_id}/fulfillments/{id}/complete.json",
+            "uri" => "/admin/api/{$api_version}/orders/{order_id}/fulfillments/{id}/complete.json",
             "summary" => "Complete a fulfillment.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -340,7 +344,7 @@ return array(
          */
         "cancelFulfillment" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/orders/{order_id}/fulfillments/{id}/cancel.json",
+            "uri" => "/admin/api/{$api_version}/orders/{order_id}/fulfillments/{id}/cancel.json",
             "summary" => "Complete a fulfillment.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

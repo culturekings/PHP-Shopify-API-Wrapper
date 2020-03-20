@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getEvents" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/events.json",
+            "uri" => "/admin/api/{$api_version}/events.json",
             "summary" => "Retrieve a list of all events.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -76,7 +80,7 @@ return array(
          */
         "getEventCount" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/events/count.json",
+            "uri" => "/admin/api/{$api_version}/events/count.json",
             "summary" => "Retrieve a count of all events.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -101,7 +105,7 @@ return array(
          */
         "getEvent" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/event/{id}.json",
+            "uri" => "/admin/api/{$api_version}/event/{id}.json",
             "summary" => "Retrieve a single event.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

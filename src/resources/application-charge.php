@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getApplicationCharges" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/application_charges.json",
+            "uri" => "/admin/api/{$api_version}/application_charges.json",
             "summary" => "All charges that have been requested are retrieved by this request.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -46,7 +50,7 @@ return array(
          */
         "getApplicationCharge" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/application_charges/{id}.json",
+            "uri" => "/admin/api/{$api_version}/application_charges/{id}.json",
             "summary" => "Retrive a single application charge.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -72,7 +76,7 @@ return array(
          */
         "createApplicationCharge" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/application_charges.json",
+            "uri" => "/admin/api/{$api_version}/application_charges.json",
             "summary" => "Create a new one-time application charge.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -112,7 +116,7 @@ return array(
          */
         "activeApplicationCharge" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/application_charges/{id}/activate.json",
+            "uri" => "/admin/api/{$api_version}/application_charges/{id}/activate.json",
             "summary" => "Activate a previously accepted one-time application charge.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -177,7 +181,7 @@ return array(
          */
         "getArticle" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/blogs/{blog_id}/articles/{article_id}.json",
+            "uri" => "/admin/api/{$api_version}/blogs/{blog_id}/articles/{article_id}.json",
             "summary" => "Get a single article by its ID and the ID of the parent blog.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -208,7 +212,7 @@ return array(
          */
         "createArticle" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/blogs/{blog_id}/articles.json",
+            "uri" => "/admin/api/{$api_version}/blogs/{blog_id}/articles.json",
             "summary" => "Create a new article for a blog",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

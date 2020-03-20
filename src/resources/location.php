@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getLocations" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/locations.json",
+            "uri" => "/admin/api/{$api_version}/locations.json",
             "summary" => "Get a list of all locations for a shop.",
             "responseModel" => "defaultJsonResponse",
         ),
@@ -34,7 +38,7 @@ return array(
          */
         "getLocation" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/locations/{id}.json",
+            "uri" => "/admin/api/{$api_version}/locations/{id}.json",
             "summary" => "Get a single location by its ID.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

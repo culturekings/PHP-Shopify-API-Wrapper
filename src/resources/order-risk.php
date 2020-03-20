@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getOrderRisks" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/orders/{id}/risks.json",
+            "uri" => "/admin/api/{$api_version}/orders/{id}/risks.json",
             "summary" => "Get a list of all Order Risks.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -42,7 +46,7 @@ return array(
          */
         "getOrderRisk" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/orders/{order_id}/risks/{id}.json",
+            "uri" => "/admin/api/{$api_version}/orders/{order_id}/risks/{id}.json",
             "summary" => "Get a count of all pages.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -69,7 +73,7 @@ return array(
          */
         "updateOrderRisk" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/orders/{order_id}/risks/{id}.json",
+            "uri" => "/admin/api/{$api_version}/orders/{order_id}/risks/{id}.json",
             "summary" => "Update an Order Risk entry.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -136,7 +140,7 @@ return array(
          */
         "deleteOrderRisk" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/orders/{order_id}/risks/{id}.json",
+            "uri" => "/admin/api/{$api_version}/orders/{order_id}/risks/{id}.json",
             "summary" => "Delete an order risk entry. Consider updating a previous order risk with display set to false rather than deleting an entry.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

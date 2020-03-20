@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getBlogs" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/blogs.json",
+            "uri" => "/admin/api/{$api_version}/blogs.json",
             "summary" => "Retrieve a list of all Blogs",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -51,7 +55,7 @@ return array(
          */
         "getBlogCount" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/blogs/count.json",
+            "uri" => "/admin/api/{$api_version}/blogs/count.json",
             "summary" => "Retrieve a count of all Blogs",
             "responseModel" => "defaultJsonResponse"
         ),
@@ -64,7 +68,7 @@ return array(
          */
         "getBlog" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/blogs/{id}.json",
+            "uri" => "/admin/api/{$api_version}/blogs/{id}.json",
             "summary" => "Retrieve a single Blog",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -90,7 +94,7 @@ return array(
          */
         "createBlog" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/blogs.json",
+            "uri" => "/admin/api/{$api_version}/blogs.json",
             "summary" => "Create a new blog",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -141,7 +145,7 @@ yes: Readers can post comments to blog articles without moderation."
          */
         "updateBlog" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/blogs/{id}.json",
+            "uri" => "/admin/api/{$api_version}/blogs/{id}.json",
             "summary" => "Update a blog",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -203,7 +207,7 @@ yes: Readers can post comments to blog articles without moderation."
          */
         "deleteBlog" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/blogs/{id}.json",
+            "uri" => "/admin/api/{$api_version}/blogs/{id}.json",
             "summary" => "Delete a blog.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

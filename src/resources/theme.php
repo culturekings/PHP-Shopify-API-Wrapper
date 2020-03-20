@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getThemes" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/themes.json",
+            "uri" => "/admin/api/{$api_version}/themes.json",
             "summary" => "Receive a list of all themes.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -45,7 +49,7 @@ return array(
          */
         "getTheme" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/themes/{id}.json",
+            "uri" => "/admin/api/{$api_version}/themes/{id}.json",
             "summary" => "Get a single theme.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -71,7 +75,7 @@ return array(
          */
         "createTheme" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/themes.json",
+            "uri" => "/admin/api/{$api_version}/themes.json",
             "summary" => "Create a theme by providing the public URL of a .zip containing the theme. The theme always starts out with a role of unpublished. If a different role is provided in the POST request, the theme will be given that role only after all its files have been extracted and stored by Shopify (which might take a couple of minutes).",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -106,7 +110,7 @@ return array(
          */
         "updateTheme" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/themes/{id}.json",
+            "uri" => "/admin/api/{$api_version}/themes/{id}.json",
             "summary" => "Update an existing theme.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -147,7 +151,7 @@ return array(
          */
         "deleteTheme" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/themes/{id}.json",
+            "uri" => "/admin/api/{$api_version}/themes/{id}.json",
             "summary" => "Remove a theme.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

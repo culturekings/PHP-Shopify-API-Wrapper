@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getShippingZones" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/shipping_zones.json",
+            "uri" => "/admin/api/{$api_version}/shipping_zones.json",
             "summary" => "Get a list of all shipping zones.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

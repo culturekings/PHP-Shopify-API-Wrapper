@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getDiscounts" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/discounts.json",
+            "uri" => "/admin/api/{$api_version}/discounts.json",
             "summary" => "Retrieve a list of all Discounts",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -45,7 +49,7 @@ return array(
          */
         "getDiscount" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/discount/{id}.json",
+            "uri" => "/admin/api/{$api_version}/discount/{id}.json",
             "summary" => "Retrieve a single Discount",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -66,7 +70,7 @@ return array(
          */
         "createDiscount" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/discounts.json",
+            "uri" => "/admin/api/{$api_version}/discounts.json",
             "summary" => "Create a new Discount.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -141,7 +145,7 @@ return array(
          */
         "deleteDiscount" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/discounts/{id}.json",
+            "uri" => "/admin/api/{$api_version}/discounts/{id}.json",
             "summary" => "Delete a discount from the shop.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -162,7 +166,7 @@ return array(
          */
         "disableDiscount" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/discounts/{id}/disable.json",
+            "uri" => "/admin/api/{$api_version}/discounts/{id}/disable.json",
             "summary" => "Disable a discount from the shop.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -183,7 +187,7 @@ return array(
          */
         "enableDiscount" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/discounts/{id}/enable.json",
+            "uri" => "/admin/api/{$api_version}/discounts/{id}/enable.json",
             "summary" => "Enable a discount from the shop.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 
     /*
@@ -21,7 +25,7 @@ return array(
          */
         "getCustomerSavedSearches" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/customer_saved_searches.json",
+            "uri" => "/admin/api/{$api_version}/customer_saved_searches.json",
             "summary" => "Get a list of all customer saved searches",
             "responseModel" => "defaultJsonResponse",
         ),
@@ -34,7 +38,7 @@ return array(
          */
         "getCustomerSavedSearchesCount" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/customer_saved_searches/count.json",
+            "uri" => "/admin/api/{$api_version}/customer_saved_searches/count.json",
             "summary" => "Get a count of all customer saved searches",
             "responseModel" => "defaultJsonResponse"
         ),
@@ -47,7 +51,7 @@ return array(
          */
         "getCustomerSavedSearch" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/customer_saved_searches/{id}.json",
+            "uri" => "/admin/api/{$api_version}/customer_saved_searches/{id}.json",
             "summary" => "Get a single customer saved search",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -68,7 +72,7 @@ return array(
          */
         "getCustomerSavedSearchCustomers" => array(
             "httpMethod" => "GET",
-            "uri" => "/admin/customer_saved_searches/{id}/customers.json",
+            "uri" => "/admin/api/{$api_version}/customer_saved_searches/{id}/customers.json",
             "summary" => "Get all customers who match the criteria for the specified customer saved search",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -89,7 +93,7 @@ return array(
          */
         "createCustomerSavedSearch" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/customer_saved_searches.json",
+            "uri" => "/admin/api/{$api_version}/customer_saved_searches.json",
             "summary" => "Create a new customer saved search.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -149,7 +153,7 @@ return array(
          */
         "updateCustomerSavedSearch" => array(
             "httpMethod" => "PUT",
-            "uri" => "/admin/customer_saved_searches/{id}.json",
+            "uri" => "/admin/api/{$api_version}/customer_saved_searches/{id}.json",
             "summary" => "Update a customer saved search.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
@@ -218,7 +222,7 @@ return array(
          */
         "deleteCustomerSavedSearch" => array(
             "httpMethod" => "DELETE",
-            "uri" => "/admin/customer_saved_searches/{id}.json",
+            "uri" => "/admin/api/{$api_version}/customer_saved_searches/{id}.json",
             "summary" => "Delete a customers saved search.",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(

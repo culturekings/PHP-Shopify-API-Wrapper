@@ -1,4 +1,9 @@
 <?php
+
+use Illuminate\Support\Facades\Config;
+
+$api_version = Config::get('openstyle.shopify.api_version');
+
 return array(
 	
 	/*
@@ -15,7 +20,7 @@ return array(
 	    
         "postAuth" => array(
             "httpMethod" => "POST",
-            "uri" => "/admin/oauth/access_token",
+            "uri" => "/admin/api/{$api_version}/oauth/access_token",
             "summary" => "Retrieve Access Token",
             "responseModel" => "defaultJsonResponse",
             "parameters" => array(
